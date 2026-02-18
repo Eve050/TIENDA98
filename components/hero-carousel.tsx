@@ -55,33 +55,32 @@ export default function HeroCarousel() {
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className={`transition-opacity duration-1000 ${
-                index === currentSlide ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"
-              }`}
+              className={`transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"
+                }`}
             >
-              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div className="space-y-4 md:space-y-6 max-w-2xl">
-                  <div className="space-y-3 md:space-y-4">
-                    <p className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-widest">
+              <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
+                <div className="space-y-4 md:space-y-6 max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
+                  <div className="space-y-2 md:space-y-4">
+                    <p className="text-[10px] md:text-sm font-semibold text-muted-foreground uppercase tracking-widest">
                       {slide.eyebrow}
                     </p>
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[0.95]">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] md:leading-[0.95]">
                       {slide.title}
                     </h1>
-                    <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-sm md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
                       {slide.subtitle}
                     </p>
                   </div>
-                  <Link href={slide.href}>
+                  <Link href={slide.href} className="inline-block">
                     <Button
                       size="lg"
-                      className="rounded-full px-8 md:px-10 py-5 md:py-6 text-sm md:text-base font-semibold h-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 hover:scale-105 transition-transform"
+                      className="rounded-full px-6 md:px-10 py-4 md:py-6 text-sm md:text-base font-semibold h-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 hover:scale-105 transition-transform"
                     >
                       {slide.cta}
                     </Button>
                   </Link>
                 </div>
-                <div className="relative h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px]">
+                <div className="relative h-[200px] sm:h-[320px] md:h-[380px] lg:h-[420px] mt-4 lg:mt-0">
                   <img
                     src={slide.image || "/placeholder.svg"}
                     alt={slide.title}
@@ -116,11 +115,10 @@ export default function HeroCarousel() {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`h-2 rounded-full transition-all duration-500 ${
-                  index === currentSlide
+                className={`h-2 rounded-full transition-all duration-500 ${index === currentSlide
                     ? "w-8 md:w-10 bg-gradient-to-r from-amber-500 to-orange-500"
                     : "w-2 bg-foreground/20 hover:bg-amber-400/40"
-                }`}
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

@@ -81,21 +81,133 @@ export default function Header() {
           </div>
         </button>
 
-        <div className="container mx-auto px-4 py-4 md:py-5">
-          <div className="flex items-center justify-between gap-4">
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
-              <Image
-                src="/images/image.png"
-                alt="TIENDA98"
-                width={150}
-                height={40}
-                className="h-8 md:h-10 w-auto group-hover:scale-105 transition-transform duration-300"
-              />
-            </Link>
+        <div className="container mx-auto px-4 py-3 md:py-5">
+          {/* Mobile Header Layout (Stack vertically) */}
+          <div className="flex flex-col md:flex-row md:items-center gap-4">
 
-            <HeaderSearch />
+            {/* Top Row on Mobile: Menu, Logo, Cart/User Actions */}
+            <div className="flex items-center justify-between w-full md:w-auto">
+              {/* Mobile Menu Button - Left */}
+              <div className="md:hidden">
+                <DropdownMenu open={isCategoriesOpen} onOpenChange={setIsCategoriesOpen}>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" className="h-10 w-10 -ml-2">
+                      <Menu className="w-6 h-6" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-72 max-h-[80vh] overflow-y-auto p-2">
+                    <div className="space-y-1">
+                      {categories.map((category) => (
+                        <DropdownMenuItem key={category.slug} asChild>
+                          <Link
+                            href={`/categorias/${category.slug}`}
+                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-primary/10 hover:text-primary transition-all"
+                          >
+                            <span className="text-xl">{category.icon}</span>
+                            <span className="font-medium">{category.name}</span>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link href="/productos" className="p-3 font-medium">Productos</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/tiendas" className="p-3 font-medium">Tiendas</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/informacion" className="p-3 font-medium">Información</Link>
+                      </DropdownMenuItem>
+                    </div>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
 
-            <div className="flex items-center gap-2">
+              {/* Logo - Center on Mobile, Left on Desktop */}
+              <Link href="/" className="flex-shrink-0 group">
+                <Image
+                  src="/images/image.png"
+                  alt="TIENDA98"
+                  width={140}
+                  height={36}
+                  className="h-7 md:h-10 w-auto group-hover:scale-105 transition-transform duration-300"
+                />
+              </Link>
+
+              {/* Mobile Cart/User Actions - Right */}
+              <div className="flex items-center gap-1 md:hidden">
+                <Link href="/carrito">
+                  <Button variant="ghost" size="icon" className="relative h-10 w-10">
+                    <ShoppingCart className="w-5 h-5" />
+                    {itemCount > 0 && (
+                      <Badge className="absolute top-1 right-1 h-4 w-4 flex items-center justify-center p-0 text-[10px] bg-primary text-white">
+                        {itemCount}
+                      </Badge>
+                    )}
+                  </Button>
+                </Link>
+                <DropdownMenu open={isUserMenuOpen} onOpenChange={setIsUserMenuOpen}>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" className="h-10 w-10">
+                      <User className="w-5 h-5" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-64 p-2">
+                    {isAuthenticated ? (
+                      <>
+                        <div className="px-3 py-3 bg-muted/50 rounded-lg mb-2">
+                          <p className="font-semibold text-foreground">{user?.name}</p>
+                          <p className="text-sm text-muted-foreground">{user?.email}</p>
+                        </div>
+                        <DropdownMenuItem asChild className="rounded-lg py-2.5">
+                          <Link href="/mi-cuenta">Mi Cuenta</Link>
+                        </DropdownMenuItem>
+                        {user?.type !== "seller" && (
+                          <DropdownMenuItem asChild className="rounded-lg py-2.5">
+                            <Link href="/mis-pedidos">Mis Pedidos</Link>
+                          </DropdownMenuItem>
+                        )}
+                        {user?.type === "seller" && (
+                          <DropdownMenuItem asChild className="rounded-lg py-2.5">
+                            <Link href="/vendedor/mi-tienda">Mi Tienda</Link>
+                          </DropdownMenuItem>
+                        )}
+                        <DropdownMenuSeparator className="my-2" />
+                        <DropdownMenuItem onClick={logout} className="text-destructive rounded-lg py-2.5">
+                          <LogOut className="w-4 h-4 mr-2" />
+                          Cerrar Sesión
+                        </DropdownMenuItem>
+                      </>
+                    ) : (
+                      <>
+                        <DropdownMenuItem
+                          onClick={() => setShowLoginDialog(true)}
+                          className="rounded-lg py-2.5 hover:bg-primary hover:text-white focus:bg-primary focus:text-white transition-colors"
+                        >
+                          Iniciar Sesión
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link
+                            href="/registro"
+                            className="rounded-lg py-2.5 hover:bg-primary hover:text-white focus:bg-primary focus:text-white transition-colors"
+                          >
+                            Registrarse
+                          </Link>
+                        </DropdownMenuItem>
+                      </>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </div>
+
+            {/* Search Bar - Full Width on Mobile, Middle on Desktop */}
+            <div className="w-full md:flex-1 md:mx-4 order-last md:order-none">
+              <HeaderSearch />
+            </div>
+
+            {/* Desktop Actions - Hidden on Mobile */}
+            <div className="hidden md:flex items-center gap-2">
               <DropdownMenu open={isUserMenuOpen} onOpenChange={setIsUserMenuOpen}>
                 <DropdownMenuTrigger asChild>
                   <Button
@@ -197,7 +309,8 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="bg-muted/50 border-t border-border">
+        {/* Desktop Navigation - Hidden on Mobile */}
+        <div className="hidden md:block bg-muted/50 border-t border-border">
           <div className="container mx-auto px-4">
             <nav className="flex items-center gap-2 py-3 overflow-x-auto scrollbar-hide">
               <DropdownMenu open={isCategoriesOpen} onOpenChange={setIsCategoriesOpen}>
