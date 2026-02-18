@@ -141,7 +141,7 @@ export default function FeaturedProducts() {
         </div>
 
         <div className="relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
             {currentProducts.map((product) => (
               <Card
                 key={product.id}
@@ -244,11 +244,10 @@ export default function FeaturedProducts() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index * itemsPerPage)}
-                className={`h-1.5 md:h-2 rounded-full transition-all ${
-                  Math.floor(currentIndex / itemsPerPage) === index
+                className={`h-1.5 md:h-2 rounded-full transition-all ${Math.floor(currentIndex / itemsPerPage) === index
                     ? "w-6 md:w-8 bg-orange-500"
                     : "w-1.5 md:w-2 bg-gray-300"
-                }`}
+                  }`}
               />
             ))}
           </div>
