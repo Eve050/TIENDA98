@@ -8,6 +8,8 @@ import { useState } from "react"
 import { useCart } from "@/lib/cart-context"
 import { useWishlist } from "@/lib/wishlist-context"
 import { useCompare } from "@/lib/compare-context"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 
 const offerProducts = [
   {
@@ -111,7 +113,9 @@ export default function OfertasPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
+      <Header />
+      <main className="flex-1">
       <div className="bg-gradient-to-r from-amber-500 via-orange-400 to-amber-500 text-white">
         <div className="container mx-auto px-6 md:px-12 py-12 md:py-16">
           <div className="max-w-3xl">
@@ -222,6 +226,8 @@ export default function OfertasPage() {
           ))}
         </div>
       </div>
+      </main>
+      <Footer />
     </div>
   )
 }

@@ -26,6 +26,8 @@ export interface CategoryProduct {
   category: string
   size?: string
   originalPrice?: number
+  features?: string[]
+  specs?: Record<string, string>
 }
 
 interface CategoryPageLayoutProps {
@@ -127,9 +129,8 @@ export default function CategoryPageLayout({
         {Array.from({ length: 5 }, (_, i) => (
           <Star
             key={i}
-            className={`w-3.5 h-3.5 ${
-              i < Math.floor(rating) ? "fill-amber-400 text-amber-400" : "fill-gray-200 text-gray-200"
-            }`}
+            className={`w-3.5 h-3.5 ${i < Math.floor(rating) ? "fill-amber-400 text-amber-400" : "fill-gray-200 text-gray-200"
+              }`}
           />
         ))}
       </div>
@@ -147,11 +148,10 @@ export default function CategoryPageLayout({
             <button
               key={sub}
               onClick={() => toggleFilter(selectedCategories, sub, setSelectedCategories)}
-              className={`w-full text-left text-sm px-3 py-2 rounded-lg transition-colors ${
-                selectedCategories.includes(sub)
-                  ? "bg-orange-500 text-white font-medium"
-                  : "text-gray-600 hover:bg-gray-50"
-              }`}
+              className={`w-full text-left text-sm px-3 py-2 rounded-lg transition-colors ${selectedCategories.includes(sub)
+                ? "bg-orange-500 text-white font-medium"
+                : "text-gray-600 hover:bg-gray-50"
+                }`}
             >
               {sub}
             </button>
@@ -168,11 +168,10 @@ export default function CategoryPageLayout({
               <button
                 key={size}
                 onClick={() => toggleFilter(selectedSizes, size, setSelectedSizes)}
-                className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                  selectedSizes.includes(size)
-                    ? "bg-orange-500 border-orange-500 text-white font-medium"
-                    : "border-gray-200 text-gray-600 hover:border-orange-400"
-                }`}
+                className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${selectedSizes.includes(size)
+                  ? "bg-orange-500 border-orange-500 text-white font-medium"
+                  : "border-gray-200 text-gray-600 hover:border-orange-400"
+                  }`}
               >
                 {size}
               </button>
@@ -189,11 +188,10 @@ export default function CategoryPageLayout({
             <button
               key={label}
               onClick={() => toggleFilter(selectedPrices, label, setSelectedPrices)}
-              className={`w-full text-left text-sm px-3 py-2 rounded-lg transition-colors ${
-                selectedPrices.includes(label)
-                  ? "bg-orange-500 text-white font-medium"
-                  : "text-gray-600 hover:bg-gray-50"
-              }`}
+              className={`w-full text-left text-sm px-3 py-2 rounded-lg transition-colors ${selectedPrices.includes(label)
+                ? "bg-orange-500 text-white font-medium"
+                : "text-gray-600 hover:bg-gray-50"
+                }`}
             >
               {label}
             </button>
@@ -209,11 +207,10 @@ export default function CategoryPageLayout({
             <button
               key={rating}
               onClick={() => toggleFilter(selectedRatings, rating, setSelectedRatings)}
-              className={`w-full text-left text-sm px-3 py-2 rounded-lg transition-colors flex items-center gap-2 ${
-                selectedRatings.includes(rating)
-                  ? "bg-orange-50 text-orange-600 font-medium border border-orange-200"
-                  : "text-gray-600 hover:bg-gray-50"
-              }`}
+              className={`w-full text-left text-sm px-3 py-2 rounded-lg transition-colors flex items-center gap-2 ${selectedRatings.includes(rating)
+                ? "bg-orange-50 text-orange-600 font-medium border border-orange-200"
+                : "text-gray-600 hover:bg-gray-50"
+                }`}
             >
               <div className="flex gap-0.5">
                 {Array.from({ length: 5 }, (_, i) => (
@@ -423,11 +420,10 @@ export default function CategoryPageLayout({
                               category: product.category,
                             })
                           }
-                          className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors ${
-                            isInWishlist(product.id)
-                              ? "bg-orange-500 text-white"
-                              : "bg-white/90 text-gray-500 hover:bg-orange-500 hover:text-white"
-                          }`}
+                          className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors ${isInWishlist(product.id)
+                            ? "bg-orange-500 text-white"
+                            : "bg-white/90 text-gray-500 hover:bg-orange-500 hover:text-white"
+                            }`}
                         >
                           <Heart className={`w-3.5 h-3.5 ${isInWishlist(product.id) ? "fill-current" : ""}`} />
                         </button>
@@ -439,13 +435,14 @@ export default function CategoryPageLayout({
                               price: product.price,
                               image: product.image,
                               category: product.category,
+                              features: product.features,
+                              specs: product.specs,
                             })
                           }
-                          className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors ${
-                            isInCompare(product.id)
-                              ? "bg-orange-500 text-white"
-                              : "bg-white/90 text-gray-500 hover:bg-orange-500 hover:text-white"
-                          }`}
+                          className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors ${isInCompare(product.id)
+                            ? "bg-orange-500 text-white"
+                            : "bg-white/90 text-gray-500 hover:bg-orange-500 hover:text-white"
+                            }`}
                         >
                           <Shuffle className="w-3.5 h-3.5" />
                         </button>

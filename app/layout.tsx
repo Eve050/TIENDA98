@@ -17,21 +17,8 @@ export const metadata: Metadata = {
   description: "Tu marketplace en línea para Ecuador. Encuentra tecnología, moda, repuestos y más al mejor precio.",
   generator: "v0.app",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    icon: "/logo-tienda98.png",
+    apple: "/logo-tienda98.png",
   },
 }
 

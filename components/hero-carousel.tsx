@@ -13,7 +13,7 @@ const slides = [
     subtitle: "El marketplace más grande de Ecuador",
     cta: "Explorar",
     href: "/informacion",
-    image: "/images/captura-20de-20pantalla-202025-12-22-20191401.png",
+    image: "/hero-marketplace-shopping.jpg",
   },
   {
     id: 2,
@@ -49,84 +49,84 @@ export default function HeroCarousel() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
 
   return (
-    <section className="relative bg-gradient-to-br from-amber-50/30 via-background to-orange-50/20 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 lg:px-12 py-8 md:py-12 lg:py-16">
+    <section className="relative overflow-hidden bg-gradient-to-br from-amber-50/30 via-background to-orange-50/20">
+      <div className="container mx-auto px-4 md:px-6 lg:px-20 py-10 md:py-16 lg:py-24">
         <div className="relative">
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className={`transition-opacity duration-1000 ${
-                index === currentSlide ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"
-              }`}
+              className={`transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"
+                }`}
             >
-              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div className="space-y-4 md:space-y-6 max-w-2xl">
-                  <div className="space-y-3 md:space-y-4">
-                    <p className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-widest">
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                <div className="space-y-6 md:space-y-8 max-w-2xl text-center lg:text-left">
+                  <div className="space-y-4 md:space-y-5">
+                    <p className="text-xs md:text-sm font-bold text-primary uppercase tracking-[0.2em]">
                       {slide.eyebrow}
                     </p>
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[0.95]">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] md:leading-[1.05]">
                       {slide.title}
                     </h1>
-                    <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0">
                       {slide.subtitle}
                     </p>
                   </div>
-                  <Link href={slide.href}>
-                    <Button
-                      size="lg"
-                      className="rounded-full px-8 md:px-10 py-5 md:py-6 text-sm md:text-base font-semibold h-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 hover:scale-105 transition-transform"
-                    >
-                      {slide.cta}
-                    </Button>
-                  </Link>
+                  <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <Link href={slide.href} className="w-full sm:w-auto">
+                      <Button
+                        size="lg"
+                        className="w-full sm:w-auto rounded-full px-10 py-7 text-base md:text-lg font-bold h-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 hover:scale-105 transition-all shadow-xl shadow-orange-500/20"
+                      >
+                        {slide.cta}
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-                <div className="relative h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px]">
+                <div className="relative h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] w-full mt-8 lg:mt-0 animate-fade-in-up">
                   <img
                     src={slide.image || "/placeholder.svg"}
                     alt={slide.title}
-                    className="w-full h-full object-contain drop-shadow-2xl"
+                    className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
                   />
+                  {/* Decorative elements for mobile */}
+                  <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-primary/5 rounded-full blur-3xl lg:hidden" />
                 </div>
               </div>
             </div>
           ))}
 
-          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-10">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevSlide}
-              className="ml-2 md:ml-4 rounded-full h-10 w-10 md:h-12 md:w-12 bg-background/90 backdrop-blur-md border-2 hover:bg-background hover:scale-110 pointer-events-auto transition-all"
-            >
-              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextSlide}
-              className="mr-2 md:mr-4 rounded-full h-10 w-10 md:h-12 md:w-12 bg-background/90 backdrop-blur-md border-2 hover:bg-background hover:scale-110 pointer-events-auto transition-all"
-            >
-              <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-            </Button>
-          </div>
-
-          <div className="flex justify-center gap-2 md:gap-3 mt-6 md:mt-8">
+          <div className="flex justify-center lg:justify-start gap-2.5 md:gap-3 mt-10 md:mt-12">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`h-2 rounded-full transition-all duration-500 ${
-                  index === currentSlide
-                    ? "w-8 md:w-10 bg-gradient-to-r from-amber-500 to-orange-500"
-                    : "w-2 bg-foreground/20 hover:bg-amber-400/40"
-                }`}
+                className={`h-2.5 rounded-full transition-all duration-500 ${index === currentSlide
+                    ? "w-10 md:w-12 bg-gradient-to-r from-amber-500 to-orange-500 shadow-md shadow-orange-500/40"
+                    : "w-2.5 bg-foreground/10 hover:bg-amber-400/40"
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
         </div>
       </div>
+
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={prevSlide}
+        className="hidden md:flex absolute left-2 lg:left-4 top-1/2 -translate-y-1/2 z-10 rounded-full h-10 w-10 md:h-12 md:w-12 bg-background/90 backdrop-blur-md border-2 hover:bg-background hover:scale-110 transition-all shadow-lg"
+      >
+        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+      </Button>
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={nextSlide}
+        className="hidden md:flex absolute right-2 lg:right-4 top-1/2 -translate-y-1/2 z-10 rounded-full h-10 w-10 md:h-12 md:w-12 bg-background/90 backdrop-blur-md border-2 hover:bg-background hover:scale-110 transition-all shadow-lg"
+      >
+        <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+      </Button>
     </section>
   )
 }

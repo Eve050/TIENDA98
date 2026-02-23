@@ -1,12 +1,10 @@
 "use client"
 
 import React from "react"
-import { useSearchParams } from "next/navigation"
-import { Suspense } from "react"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
-import Link from "next/link"
 import {
   Search,
   Plus,
@@ -166,6 +164,7 @@ const statusColors: Record<string, { bg: string; text: string; icon: React.React
 }
 
 function AdminProductsPage() {
+  const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedStatus, setSelectedStatus] = useState("all")
@@ -221,12 +220,13 @@ function AdminProductsPage() {
             <Download className="w-4 h-4" />
             Exportar
           </Button>
-          <Link href="/admin/productos/nuevo">
-            <Button className="bg-orange-500 hover:bg-orange-600 gap-2">
-              <Plus className="w-4 h-4" />
-              Añadir Producto
-            </Button>
-          </Link>
+          <Button
+            className="bg-orange-500 hover:bg-orange-600 gap-2"
+            onClick={() => router.push("/admin/productos/nuevo")}
+          >
+            <Plus className="w-4 h-4" />
+            Añadir Producto
+          </Button>
         </div>
       </div>
 
@@ -504,9 +504,5 @@ function AdminProductsPage() {
 }
 
 export default function Page() {
-  return (
-    <Suspense fallback={null}>
-      <AdminProductsPage />
-    </Suspense>
-  )
+  return <AdminProductsPage />
 }

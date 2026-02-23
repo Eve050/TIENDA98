@@ -11,13 +11,13 @@ export default function PromoCards() {
             <div className="relative z-10 p-6 sm:p-8 md:p-10 h-full flex flex-col justify-between">
               <div className="space-y-4 md:space-y-6 max-w-md">
                 <div className="space-y-2 md:space-y-3">
-                  <p className="text-xs font-semibold text-orange-400 uppercase tracking-widest">
+                  <p className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em]">
                     Autos, Motos y bicicletas
                   </p>
-                  <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter leading-[0.95] drop-shadow-lg">
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] md:leading-[1.05] drop-shadow-xl">
                     ¿Repuestos?
                   </h3>
-                  <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-medium drop-shadow">
+                  <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium drop-shadow">
                     Todas las marcas
                   </p>
                 </div>

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import AdminSidebar from "@/components/admin-sidebar"
 import AdminHeader from "@/components/admin-header"
 
-export default function AdminCategoriasLayout({
+export default function AdminReembolsosLayout({
   children,
 }: {
   children: React.ReactNode

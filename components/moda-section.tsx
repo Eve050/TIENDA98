@@ -11,11 +11,11 @@ export default function ModaSection() {
             <div className="relative z-10 p-6 sm:p-8 md:p-10 h-full flex flex-col justify-between">
               <div className="space-y-4 md:space-y-6">
                 <div className="space-y-2 md:space-y-3">
-                  <p className="text-xs font-semibold text-orange-400 uppercase tracking-widest">Tendencia 2025</p>
-                  <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter leading-[0.95] drop-shadow-lg">
+                  <p className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em]">Tendencia 2025</p>
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] md:leading-[1.05] drop-shadow-xl">
                     Viste a la moda
                   </h3>
-                  <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-medium drop-shadow">
+                  <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium drop-shadow max-w-[200px] sm:max-w-none">
                     Lo mejor de la moda 2025
                   </p>
                 </div>

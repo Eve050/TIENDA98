@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import {
   LayoutDashboard,
@@ -11,18 +10,9 @@ import {
   Store,
   Settings,
   BarChart3,
-  Tag,
-  MessageSquare,
-  Bell,
   LogOut,
   ChevronDown,
-  FileText,
-  CreditCard,
-  Truck,
-  Globe,
-  Percent,
   Megaphone,
-  HelpCircle,
 } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
@@ -40,8 +30,6 @@ const menuItems = [
       { title: "Todos los Productos", href: "/admin/productos" },
       { title: "Añadir Producto", href: "/admin/productos/nuevo" },
       { title: "Categorías", href: "/admin/categorias" },
-      { title: "Atributos", href: "/admin/atributos" },
-      { title: "Marcas", href: "/admin/marcas" },
     ],
   },
   {
@@ -49,20 +37,13 @@ const menuItems = [
     icon: ShoppingCart,
     submenu: [
       { title: "Todos los Pedidos", href: "/admin/pedidos" },
-      { title: "Pendientes", href: "/admin/pedidos?status=pendiente" },
-      { title: "Procesando", href: "/admin/pedidos?status=procesando" },
-      { title: "Completados", href: "/admin/pedidos?status=completado" },
       { title: "Reembolsos", href: "/admin/reembolsos" },
     ],
   },
   {
     title: "Usuarios",
+    href: "/admin/usuarios",
     icon: Users,
-    submenu: [
-      { title: "Todos los Usuarios", href: "/admin/usuarios" },
-      { title: "Añadir Usuario", href: "/admin/usuarios/nuevo" },
-      { title: "Roles", href: "/admin/roles" },
-    ],
   },
   {
     title: "Vendedores",
@@ -70,7 +51,6 @@ const menuItems = [
     submenu: [
       { title: "Todos los Vendedores", href: "/admin/vendedores" },
       { title: "Solicitudes", href: "/admin/vendedores/solicitudes" },
-      { title: "Comisiones", href: "/admin/vendedores/comisiones" },
       { title: "Retiros", href: "/admin/vendedores/retiros" },
     ],
   },
@@ -80,38 +60,33 @@ const menuItems = [
     submenu: [
       { title: "Banners", href: "/admin/banners" },
       { title: "Cupones", href: "/admin/cupones" },
-      { title: "Descuentos", href: "/admin/descuentos" },
-      { title: "Email Marketing", href: "/admin/email-marketing" },
     ],
   },
   {
     title: "Reportes",
+    href: "/admin/reportes",
     icon: BarChart3,
-    submenu: [
-      { title: "Vista General", href: "/admin/reportes" },
-      { title: "Ventas", href: "/admin/reportes/ventas" },
-      { title: "Productos", href: "/admin/reportes/productos" },
-      { title: "Clientes", href: "/admin/reportes/clientes" },
-      { title: "Vendedores", href: "/admin/reportes/vendedores" },
-    ],
   },
   {
     title: "Configuración",
+    href: "/admin/configuracion",
     icon: Settings,
-    submenu: [
-      { title: "General", href: "/admin/configuracion" },
-      { title: "Pagos", href: "/admin/configuracion/pagos" },
-      { title: "Envíos", href: "/admin/configuracion/envios" },
-      { title: "Impuestos", href: "/admin/configuracion/impuestos" },
-      { title: "Notificaciones", href: "/admin/configuracion/notificaciones" },
-    ],
   },
 ]
 
 function AdminSidebar({ isOpen, onToggle }: { isOpen?: boolean; onToggle?: () => void }) {
   const pathname = usePathname()
   const router = useRouter()
-  const [openMenus, setOpenMenus] = useState<string[]>(["Dashboard"])
+  const getInitialOpenMenus = () => {
+    const open = ["Dashboard"]
+    menuItems.forEach((item) => {
+      if (item.submenu?.some((sub) => pathname.startsWith(sub.href) || pathname === sub.href)) {
+        open.push(item.title)
+      }
+    })
+    return open
+  }
+  const [openMenus, setOpenMenus] = useState<string[]>(getInitialOpenMenus)
 
   const toggleMenu = (title: string) => {
     setOpenMenus((prev) =>
@@ -132,13 +107,11 @@ function AdminSidebar({ isOpen, onToggle }: { isOpen?: boolean; onToggle?: () =>
       {/* Logo */}
       <div className="p-4 border-b border-gray-800">
         <Link href="/admin/dashboard" className="flex items-center gap-3">
-          <Image
-            src="/logo-tienda98.png"
-            alt="Tienda98"
-            width={140}
-            height={40}
-            className="brightness-0 invert"
-          />
+          <span className="text-xl font-bold tracking-tight">
+            <span className="text-white">TI</span>
+            <span className="text-orange-500">END</span>
+            <span className="text-white">A98</span>
+          </span>
           <span className="text-xs bg-orange-500 px-2 py-0.5 rounded font-medium">
             Admin
           </span>

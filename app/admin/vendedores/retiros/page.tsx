@@ -48,8 +48,7 @@ import {
 } from "@/components/ui/dialog"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
-import { AdminSidebar } from "@/components/admin-sidebar"
-import { AdminHeader } from "@/components/admin-header"
+
 
 interface Withdrawal {
   id: string
@@ -73,7 +72,6 @@ interface Withdrawal {
 }
 
 export default function AdminWithdrawalsPage() {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [filterStatus, setFilterStatus] = useState("all")
   const [selectedWithdrawals, setSelectedWithdrawals] = useState<string[]>([])
@@ -213,13 +211,7 @@ export default function AdminWithdrawalsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <AdminSidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-
-      <div className={`transition-all duration-300 ${sidebarOpen ? "lg:ml-64" : "lg:ml-20"}`}>
-        <AdminHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
-
-        <main className="p-6">
+    <div className="space-y-6">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <div>
@@ -455,8 +447,6 @@ export default function AdminWithdrawalsPage() {
               </div>
             </CardContent>
           </Card>
-        </main>
-      </div>
 
       {/* View Details Dialog */}
       {viewWithdrawal && (
