@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { useAuth } from "@/lib/auth-context"
 import VendorSidebar from "@/components/vendor-sidebar"
 import Header from "@/components/header"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
 export default function VendedorMiCuentaPage() {
@@ -28,7 +29,15 @@ export default function VendedorMiCuentaPage() {
         <VendorSidebar />
         <main className="flex-1 bg-gray-50 p-8">
           <div className="max-w-4xl mx-auto space-y-6">
-            <h1 className="text-3xl font-bold">Mi Perfil</h1>
+            <div className="flex items-center justify-between">
+              <h1 className="text-3xl font-bold">Mi Perfil</h1>
+              <Button
+                onClick={() => router.push("/vendedor/mi-cuenta/detalles")}
+                className="bg-[#2D3142] hover:bg-black text-white"
+              >
+                Editar Perfil
+              </Button>
+            </div>
 
             <Card>
               <CardContent className="p-6">

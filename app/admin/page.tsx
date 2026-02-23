@@ -6,8 +6,9 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Lock, Mail, ShieldCheck } from "lucide-react"
+import { Lock, Mail } from "lucide-react"
 import Image from "next/image"
+import Header from "@/components/header"
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("")
@@ -30,57 +31,23 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex">
-      {/* Lado izquierdo - Imagen/Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative z-10 flex flex-col justify-center items-center w-full p-12 text-white">
-          <div className="mb-8">
-            <Image
-              src="/logo-tienda98.png"
-              alt="Tienda98"
-              width={200}
-              height={80}
-              className="brightness-0 invert"
-            />
-          </div>
-          <h2 className="text-4xl font-bold text-center mb-4">Panel de Control</h2>
-          <p className="text-xl text-center text-white/80 max-w-md">
-            Gestiona tu tienda, productos, pedidos y usuarios desde un solo lugar
-          </p>
-          <div className="mt-12 grid grid-cols-2 gap-6 text-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-3xl font-bold">1,234</div>
-              <div className="text-white/70">Productos</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-3xl font-bold">856</div>
-              <div className="text-white/70">Pedidos</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-3xl font-bold">2,451</div>
-              <div className="text-white/70">Usuarios</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-3xl font-bold">48</div>
-              <div className="text-white/70">Vendedores</div>
-            </div>
-          </div>
-        </div>
-        {/* Decorative circles */}
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-white/10 rounded-full" />
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-white/10 rounded-full" />
-      </div>
-
-      {/* Lado derecho - Formulario de login */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 p-8">
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <div className="flex-1 flex items-center justify-center bg-gray-50 p-8">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-100 rounded-full mb-4">
-                <ShieldCheck className="w-8 h-8 text-orange-600" />
+            <div className="text-center mb-10">
+              <div className="mb-6">
+                <Image
+                  src="/logo-tienda98.png"
+                  alt="Tienda98"
+                  width={180}
+                  height={50}
+                  className="mx-auto h-auto w-auto max-h-12 object-contain"
+                  priority
+                />
               </div>
-              <h1 className="text-3xl font-bold text-gray-900">Bienvenido</h1>
+              <h1 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Administración</h1>
               <p className="text-gray-500 mt-2">Ingresa tus credenciales de administrador</p>
             </div>
 
@@ -135,8 +102,8 @@ export default function AdminLoginPage() {
                 </a>
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-orange-500 hover:bg-orange-600 h-12 text-lg font-semibold"
                 disabled={isLoading}
               >

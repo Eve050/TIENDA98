@@ -30,8 +30,7 @@ import {
 } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { AdminSidebar } from "@/components/admin-sidebar"
-import { AdminHeader } from "@/components/admin-header"
+
 
 interface Banner {
   id: number
@@ -50,7 +49,6 @@ interface Banner {
 }
 
 export default function AdminBannersPage() {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [filterPosition, setFilterPosition] = useState("all")
   const [showModal, setShowModal] = useState(false)
@@ -228,13 +226,7 @@ export default function AdminBannersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <AdminSidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-
-      <div className={`transition-all duration-300 ${sidebarOpen ? "lg:ml-64" : "lg:ml-20"}`}>
-        <AdminHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
-
-        <main className="p-6">
+    <div className="space-y-6">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <div>
@@ -459,9 +451,6 @@ export default function AdminBannersPage() {
               <p className="text-gray-500">No se encontraron banners</p>
             </div>
           )}
-        </main>
-      </div>
-
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">

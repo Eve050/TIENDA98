@@ -70,11 +70,11 @@ const categoryData = [
 ]
 
 const recentOrders = [
-  { id: "#10992", customer: "Juan Pérez", total: "$125.00", status: "completado", date: "Hace 5 min" },
-  { id: "#10991", customer: "María García", total: "$89.50", status: "procesando", date: "Hace 15 min" },
-  { id: "#10990", customer: "Carlos López", total: "$250.00", status: "pendiente", date: "Hace 30 min" },
-  { id: "#10989", customer: "Ana Martínez", total: "$45.00", status: "completado", date: "Hace 1 hora" },
-  { id: "#10988", customer: "Terry Mendieta", total: "$50.00", status: "en-espera", date: "Hace 2 horas" },
+  { id: "#10992", customer: "Juan Pérez", store: "TechStore EC", total: "$125.00", status: "completado", date: "Hace 5 min" },
+  { id: "#10991", customer: "María García", store: "ModaStyle", total: "$89.50", status: "procesando", date: "Hace 15 min" },
+  { id: "#10990", customer: "Carlos López", store: "AutoParts Pro", total: "$250.00", status: "pendiente", date: "Hace 30 min" },
+  { id: "#10989", customer: "Ana Martínez", store: "HomeDecor", total: "$45.00", status: "completado", date: "Hace 1 hora" },
+  { id: "#10988", customer: "Terry Mendieta", store: "TechStore EC", total: "$50.00", status: "en-espera", date: "Hace 2 horas" },
 ]
 
 const topProducts = [
@@ -131,132 +131,148 @@ export default function AdminDashboard() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Ventas Totales</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">$45,231</p>
-                <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
-                  <TrendingUp className="w-4 h-4" />
-                  <span>+12.5%</span>
-                  <span className="text-gray-500">vs mes anterior</span>
+        <Link href="/admin/reportes">
+          <Card className="hover:shadow-lg hover:border-green-200 transition-all cursor-pointer">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-500">Ventas Totales</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">$45,231</p>
+                  <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
+                    <TrendingUp className="w-4 h-4" />
+                    <span>+12.5%</span>
+                    <span className="text-gray-500">vs mes anterior</span>
+                  </div>
+                </div>
+                <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center">
+                  <DollarSign className="w-7 h-7 text-green-600" />
                 </div>
               </div>
-              <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center">
-                <DollarSign className="w-7 h-7 text-green-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Pedidos</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">856</p>
-                <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
-                  <TrendingUp className="w-4 h-4" />
-                  <span>+8.2%</span>
-                  <span className="text-gray-500">vs mes anterior</span>
+        <Link href="/admin/pedidos">
+          <Card className="hover:shadow-lg hover:border-blue-200 transition-all cursor-pointer">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-500">Pedidos</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">856</p>
+                  <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
+                    <TrendingUp className="w-4 h-4" />
+                    <span>+8.2%</span>
+                    <span className="text-gray-500">vs mes anterior</span>
+                  </div>
+                </div>
+                <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
+                  <ShoppingCart className="w-7 h-7 text-blue-600" />
                 </div>
               </div>
-              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
-                <ShoppingCart className="w-7 h-7 text-blue-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Productos</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">1,234</p>
-                <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
-                  <TrendingUp className="w-4 h-4" />
-                  <span>+24</span>
-                  <span className="text-gray-500">nuevos esta semana</span>
+        <Link href="/admin/productos">
+          <Card className="hover:shadow-lg hover:border-purple-200 transition-all cursor-pointer">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-500">Productos</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">1,234</p>
+                  <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
+                    <TrendingUp className="w-4 h-4" />
+                    <span>+24</span>
+                    <span className="text-gray-500">nuevos esta semana</span>
+                  </div>
+                </div>
+                <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center">
+                  <Package className="w-7 h-7 text-purple-600" />
                 </div>
               </div>
-              <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center">
-                <Package className="w-7 h-7 text-purple-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Usuarios</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">2,451</p>
-                <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
-                  <TrendingUp className="w-4 h-4" />
-                  <span>+156</span>
-                  <span className="text-gray-500">nuevos este mes</span>
+        <Link href="/admin/usuarios">
+          <Card className="hover:shadow-lg hover:border-orange-200 transition-all cursor-pointer">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-500">Usuarios</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">2,451</p>
+                  <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
+                    <TrendingUp className="w-4 h-4" />
+                    <span>+156</span>
+                    <span className="text-gray-500">nuevos este mes</span>
+                  </div>
+                </div>
+                <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center">
+                  <Users className="w-7 h-7 text-orange-600" />
                 </div>
               </div>
-              <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center">
-                <Users className="w-7 h-7 text-orange-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
 
       {/* Secondary Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <Card className="bg-gradient-to-br from-orange-500 to-orange-600 text-white">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <Store className="w-8 h-8 opacity-80" />
-              <div>
-                <p className="text-2xl font-bold">48</p>
-                <p className="text-sm opacity-80">Vendedores</p>
+        <Link href="/admin/vendedores">
+          <Card className="bg-gradient-to-br from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 transition-all cursor-pointer">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <Store className="w-8 h-8 opacity-80" />
+                <div>
+                  <p className="text-2xl font-bold">48</p>
+                  <p className="text-sm opacity-80">Vendedores</p>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <Clock className="w-8 h-8 opacity-80" />
-              <div>
-                <p className="text-2xl font-bold">23</p>
-                <p className="text-sm opacity-80">Pendientes</p>
+        <Link href="/admin/pedidos">
+          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all cursor-pointer">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <Clock className="w-8 h-8 opacity-80" />
+                <div>
+                  <p className="text-2xl font-bold">23</p>
+                  <p className="text-sm opacity-80">Pendientes</p>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <Truck className="w-8 h-8 opacity-80" />
-              <div>
-                <p className="text-2xl font-bold">156</p>
-                <p className="text-sm opacity-80">En camino</p>
+        <Link href="/admin/pedidos">
+          <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all cursor-pointer">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <Truck className="w-8 h-8 opacity-80" />
+                <div>
+                  <p className="text-2xl font-bold">156</p>
+                  <p className="text-sm opacity-80">En camino</p>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <CreditCard className="w-8 h-8 opacity-80" />
-              <div>
-                <p className="text-2xl font-bold">$12.5k</p>
-                <p className="text-sm opacity-80">Por pagar</p>
+        <Link href="/admin/vendedores/retiros">
+          <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700 transition-all cursor-pointer">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <CreditCard className="w-8 h-8 opacity-80" />
+                <div>
+                  <p className="text-2xl font-bold">$12.5k</p>
+                  <p className="text-sm opacity-80">Por pagar</p>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
 
       {/* Charts Row */}
@@ -375,9 +391,10 @@ export default function AdminDashboard() {
           <CardContent>
             <div className="space-y-4">
               {recentOrders.map((order) => (
-                <div
+                <Link
                   key={order.id}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                  href="/admin/pedidos"
+                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-orange-50 hover:border-orange-200 border border-transparent transition-colors cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border">
@@ -386,6 +403,7 @@ export default function AdminDashboard() {
                     <div>
                       <p className="font-medium text-gray-900">{order.id}</p>
                       <p className="text-sm text-gray-500">{order.customer}</p>
+                      <p className="text-xs text-orange-600 font-medium">{order.store}</p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -396,7 +414,7 @@ export default function AdminDashboard() {
                       {order.status}
                     </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </CardContent>
@@ -416,9 +434,10 @@ export default function AdminDashboard() {
           <CardContent>
             <div className="space-y-4">
               {topProducts.map((product, index) => (
-                <div
+                <Link
                   key={product.name}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                  href="/admin/productos"
+                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-orange-50 hover:border-orange-200 border border-transparent transition-colors cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center border font-bold text-gray-400">
@@ -430,7 +449,7 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                   <p className="font-medium text-green-600">{product.revenue}</p>
-                </div>
+                </Link>
               ))}
             </div>
           </CardContent>
@@ -492,21 +511,21 @@ export default function AdminDashboard() {
           <CardContent>
             <div className="space-y-4">
               {[
-                { icon: CheckCircle, color: "text-green-600", bg: "bg-green-100", text: "Pedido #10992 completado", time: "Hace 5 min" },
-                { icon: Users, color: "text-blue-600", bg: "bg-blue-100", text: "Nuevo usuario registrado: María García", time: "Hace 15 min" },
-                { icon: Store, color: "text-purple-600", bg: "bg-purple-100", text: "Nueva solicitud de vendedor: TechWorld", time: "Hace 30 min" },
-                { icon: Package, color: "text-orange-600", bg: "bg-orange-100", text: "Producto agotado: iPhone 15 Pro (Negro)", time: "Hace 1 hora" },
-                { icon: AlertCircle, color: "text-yellow-600", bg: "bg-yellow-100", text: "Disputa abierta en pedido #10985", time: "Hace 2 horas" },
+                { icon: CheckCircle, color: "text-green-600", bg: "bg-green-100", text: "Pedido #10992 completado", time: "Hace 5 min", href: "/admin/pedidos" },
+                { icon: Users, color: "text-blue-600", bg: "bg-blue-100", text: "Nuevo usuario registrado: María García", time: "Hace 15 min", href: "/admin/usuarios" },
+                { icon: Store, color: "text-purple-600", bg: "bg-purple-100", text: "Nueva solicitud de vendedor: TechWorld", time: "Hace 30 min", href: "/admin/vendedores" },
+                { icon: Package, color: "text-orange-600", bg: "bg-orange-100", text: "Producto agotado: iPhone 15 Pro (Negro)", time: "Hace 1 hora", href: "/admin/productos" },
+                { icon: AlertCircle, color: "text-yellow-600", bg: "bg-yellow-100", text: "Disputa abierta en pedido #10985", time: "Hace 2 horas", href: "/admin/pedidos" },
               ].map((activity, index) => (
-                <div key={index} className="flex items-center gap-4">
-                  <div className={`w-10 h-10 ${activity.bg} rounded-full flex items-center justify-center`}>
+                <Link key={index} href={activity.href} className="flex items-center gap-4 p-2 -mx-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                  <div className={`w-10 h-10 ${activity.bg} rounded-full flex items-center justify-center shrink-0`}>
                     <activity.icon className={`w-5 h-5 ${activity.color}`} />
                   </div>
-                  <div className="flex-1">
-                    <p className="text-gray-900">{activity.text}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-gray-900 hover:text-orange-600 transition-colors">{activity.text}</p>
                     <p className="text-sm text-gray-500">{activity.time}</p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </CardContent>
@@ -518,27 +537,27 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="p-4 bg-red-50 border border-red-100 rounded-lg">
+              <Link href="/admin/productos" className="block p-4 bg-red-50 border border-red-100 rounded-lg hover:bg-red-100 hover:border-red-200 transition-colors cursor-pointer">
                 <div className="flex items-center gap-2 text-red-600 font-medium">
                   <XCircle className="w-5 h-5" />
-                  Stock Crítico
+                  Stock Critico
                 </div>
                 <p className="text-sm text-red-600 mt-1">5 productos con stock bajo</p>
-              </div>
-              <div className="p-4 bg-yellow-50 border border-yellow-100 rounded-lg">
+              </Link>
+              <Link href="/admin/pedidos" className="block p-4 bg-yellow-50 border border-yellow-100 rounded-lg hover:bg-yellow-100 hover:border-yellow-200 transition-colors cursor-pointer">
                 <div className="flex items-center gap-2 text-yellow-600 font-medium">
                   <AlertCircle className="w-5 h-5" />
                   Pedidos Pendientes
                 </div>
                 <p className="text-sm text-yellow-600 mt-1">23 pedidos sin procesar</p>
-              </div>
-              <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg">
+              </Link>
+              <Link href="/admin/vendedores" className="block p-4 bg-blue-50 border border-blue-100 rounded-lg hover:bg-blue-100 hover:border-blue-200 transition-colors cursor-pointer">
                 <div className="flex items-center gap-2 text-blue-600 font-medium">
                   <Store className="w-5 h-5" />
                   Solicitudes
                 </div>
-                <p className="text-sm text-blue-600 mt-1">3 vendedores esperando aprobación</p>
-              </div>
+                <p className="text-sm text-blue-600 mt-1">3 vendedores esperando aprobacion</p>
+              </Link>
             </div>
           </CardContent>
         </Card>

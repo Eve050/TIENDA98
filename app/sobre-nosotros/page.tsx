@@ -1,7 +1,12 @@
 import { Store, Users, Truck, Shield } from "lucide-react"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 
 export default function SobreNosotrosPage() {
   return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8 text-center">Sobre Nosotros</h1>
@@ -106,6 +111,9 @@ export default function SobreNosotrosPage() {
           </div>
         </div>
       </div>
+    </div>
+      </main>
+      <Footer />
     </div>
   )
 }

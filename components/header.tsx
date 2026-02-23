@@ -23,6 +23,14 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import HeaderSearch from "./header-search"
 
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
 const categories = [
   { name: "Moda y Accesorios", slug: "moda-y-accesorios", icon: "👔" },
   { name: "Tecnología", slug: "tecnologia", icon: "💻" },
@@ -82,143 +90,134 @@ export default function Header() {
         </button>
 
         <div className="container mx-auto px-4 py-3 md:py-5">
-          {/* Mobile Header Layout (Stack vertically) */}
-          <div className="flex flex-col md:flex-row md:items-center gap-4">
-
-            {/* Top Row on Mobile: Menu, Logo, Cart/User Actions */}
-            <div className="flex items-center justify-between w-full md:w-auto">
-              {/* Mobile Menu Button - Left */}
-              <div className="md:hidden">
-                <DropdownMenu open={isCategoriesOpen} onOpenChange={setIsCategoriesOpen}>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-10 w-10 -ml-2">
+          <div className="flex items-center justify-between gap-2 md:gap-4">
+            <div className="flex items-center gap-2">
+              {/* Mobile Menu Trigger */}
+              <div className="lg:hidden">
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon" className="h-10 w-10">
                       <Menu className="w-6 h-6" />
                     </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-72 max-h-[80vh] overflow-y-auto p-2">
-                    <div className="space-y-1">
-                      {categories.map((category) => (
-                        <DropdownMenuItem key={category.slug} asChild>
-                          <Link
-                            href={`/categorias/${category.slug}`}
-                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-primary/10 hover:text-primary transition-all"
-                          >
-                            <span className="text-xl">{category.icon}</span>
-                            <span className="font-medium">{category.name}</span>
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem asChild>
-                        <Link href="/productos" className="p-3 font-medium">Productos</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        <Link href="/tiendas" className="p-3 font-medium">Tiendas</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        <Link href="/informacion" className="p-3 font-medium">Información</Link>
-                      </DropdownMenuItem>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="w-[300px] sm:w-[350px] p-0">
+                    <SheetHeader className="p-4 border-b">
+                      <SheetTitle className="text-left flex items-center gap-2">
+                        <Image
+                          src="/images/image.png"
+                          alt="TIENDA98"
+                          width={120}
+                          height={30}
+                          className="h-8 w-auto"
+                        />
+                      </SheetTitle>
+                    </SheetHeader>
+                    <div className="flex flex-col h-full overflow-y-auto pb-20">
+                      <div className="p-4 space-y-6">
+                        <div className="space-y-2">
+                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest px-2">
+                            Categorías
+                          </p>
+                          <div className="grid grid-cols-1 gap-1">
+                            {categories.map((category) => (
+                              <Link
+                                key={category.slug}
+                                href={`/categorias/${category.slug}`}
+                                className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-primary/10 transition-colors"
+                              >
+                                <span className="text-xl">{category.icon}</span>
+                                <span className="font-medium text-sm">{category.name}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest px-2">
+                            Mi Cuenta
+                          </p>
+                          <div className="flex flex-col gap-1">
+                            <Link
+                              href="/favoritos"
+                              className="flex items-center justify-between p-3 text-sm font-semibold rounded-xl hover:bg-muted"
+                            >
+                              <div className="flex items-center gap-3">
+                                <Heart className="w-4 h-4 text-orange-500" />
+                                <span>Lista de deseos</span>
+                              </div>
+                              <Badge className="bg-orange-500 text-white border-0">{wishlistCount}</Badge>
+                            </Link>
+                            <Link
+                              href="/comparar"
+                              className="flex items-center justify-between p-3 text-sm font-semibold rounded-xl hover:bg-muted"
+                            >
+                              <div className="flex items-center gap-3">
+                                <Shuffle className="w-4 h-4 text-orange-500" />
+                                <span>Comparar</span>
+                              </div>
+                              <Badge className="bg-orange-500 text-white border-0">{compareCount}</Badge>
+                            </Link>
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest px-2">
+                            Menú Principal
+                          </p>
+                          <div className="flex flex-col gap-1">
+                            <Link
+                              href="/productos"
+                              className="p-3 text-sm font-semibold rounded-xl hover:bg-muted"
+                            >
+                              Productos
+                            </Link>
+                            <Link
+                              href="/tiendas"
+                              className="p-3 text-sm font-semibold rounded-xl hover:bg-muted"
+                            >
+                              Tiendas
+                            </Link>
+                            <Link
+                              href="/informacion"
+                              className="p-3 text-sm font-semibold rounded-xl hover:bg-muted"
+                            >
+                              Información
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                  </SheetContent>
+                </Sheet>
               </div>
 
-              {/* Logo - Center on Mobile, Left on Desktop */}
-              <Link href="/" className="flex-shrink-0 group">
+              <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0 group">
                 <Image
                   src="/images/image.png"
                   alt="TIENDA98"
-                  width={140}
-                  height={36}
+                  width={150}
+                  height={40}
                   className="h-7 md:h-10 w-auto group-hover:scale-105 transition-transform duration-300"
                 />
               </Link>
-
-              {/* Mobile Cart/User Actions - Right */}
-              <div className="flex items-center gap-1 md:hidden">
-                <Link href="/carrito">
-                  <Button variant="ghost" size="icon" className="relative h-10 w-10">
-                    <ShoppingCart className="w-5 h-5" />
-                    {itemCount > 0 && (
-                      <Badge className="absolute top-1 right-1 h-4 w-4 flex items-center justify-center p-0 text-[10px] bg-primary text-white">
-                        {itemCount}
-                      </Badge>
-                    )}
-                  </Button>
-                </Link>
-                <DropdownMenu open={isUserMenuOpen} onOpenChange={setIsUserMenuOpen}>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-10 w-10">
-                      <User className="w-5 h-5" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-64 p-2">
-                    {isAuthenticated ? (
-                      <>
-                        <div className="px-3 py-3 bg-muted/50 rounded-lg mb-2">
-                          <p className="font-semibold text-foreground">{user?.name}</p>
-                          <p className="text-sm text-muted-foreground">{user?.email}</p>
-                        </div>
-                        <DropdownMenuItem asChild className="rounded-lg py-2.5">
-                          <Link href="/mi-cuenta">Mi Cuenta</Link>
-                        </DropdownMenuItem>
-                        {user?.type !== "seller" && (
-                          <DropdownMenuItem asChild className="rounded-lg py-2.5">
-                            <Link href="/mis-pedidos">Mis Pedidos</Link>
-                          </DropdownMenuItem>
-                        )}
-                        {user?.type === "seller" && (
-                          <DropdownMenuItem asChild className="rounded-lg py-2.5">
-                            <Link href="/vendedor/mi-tienda">Mi Tienda</Link>
-                          </DropdownMenuItem>
-                        )}
-                        <DropdownMenuSeparator className="my-2" />
-                        <DropdownMenuItem onClick={logout} className="text-destructive rounded-lg py-2.5">
-                          <LogOut className="w-4 h-4 mr-2" />
-                          Cerrar Sesión
-                        </DropdownMenuItem>
-                      </>
-                    ) : (
-                      <>
-                        <DropdownMenuItem
-                          onClick={() => setShowLoginDialog(true)}
-                          className="rounded-lg py-2.5 hover:bg-primary hover:text-white focus:bg-primary focus:text-white transition-colors"
-                        >
-                          Iniciar Sesión
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link
-                            href="/registro"
-                            className="rounded-lg py-2.5 hover:bg-primary hover:text-white focus:bg-primary focus:text-white transition-colors"
-                          >
-                            Registrarse
-                          </Link>
-                        </DropdownMenuItem>
-                      </>
-                    )}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
             </div>
 
-            {/* Search Bar - Full Width on Mobile, Middle on Desktop */}
-            <div className="w-full md:flex-1 md:mx-4 order-last md:order-none">
+            <div className="hidden lg:block flex-1 max-w-md mx-4">
               <HeaderSearch />
             </div>
 
-            {/* Desktop Actions - Hidden on Mobile */}
-            <div className="hidden md:flex items-center gap-2">
+            <div className="flex items-center gap-0.5 sm:gap-1 md:gap-2">
               <DropdownMenu open={isUserMenuOpen} onOpenChange={setIsUserMenuOpen}>
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
                     size="icon"
                     className={cn(
-                      "relative h-11 w-11 rounded-xl hover:bg-muted hover:text-primary transition-all",
+                      "relative h-9 w-9 md:h-11 md:w-11 rounded-xl hover:bg-muted hover:text-primary transition-all",
                       isUserMenuOpen && "bg-primary/10 text-primary",
                     )}
                   >
-                    <User className="w-5 h-5" />
+                    <User className="w-4 h-4 md:w-5 md:h-5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-64 p-2">
@@ -228,17 +227,13 @@ export default function Header() {
                         <p className="font-semibold text-foreground">{user?.name}</p>
                         <p className="text-sm text-muted-foreground">{user?.email}</p>
                       </div>
-                      <DropdownMenuItem asChild className="rounded-lg py-2.5">
-                        <Link href="/mi-cuenta">Mi Cuenta</Link>
-                      </DropdownMenuItem>
-                      {user?.type !== "seller" && (
-                        <DropdownMenuItem asChild className="rounded-lg py-2.5">
-                          <Link href="/mis-pedidos">Mis Pedidos</Link>
-                        </DropdownMenuItem>
-                      )}
-                      {user?.type === "seller" && (
+                      {user?.type === "seller" ? (
                         <DropdownMenuItem asChild className="rounded-lg py-2.5">
                           <Link href="/vendedor/mi-tienda">Mi Tienda</Link>
+                        </DropdownMenuItem>
+                      ) : (
+                        <DropdownMenuItem asChild className="rounded-lg py-2.5">
+                          <Link href="/mi-cuenta">Mi Cuenta</Link>
                         </DropdownMenuItem>
                       )}
                       <DropdownMenuSeparator className="my-2" />
@@ -268,49 +263,52 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Link href="/comparar">
+              <Link href="/comparar" className="flex">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="relative h-11 w-11 rounded-xl hover:bg-muted hover:text-primary transition-all hidden sm:flex"
+                  className="relative h-9 w-9 md:h-11 md:w-11 rounded-xl hover:bg-muted hover:text-primary transition-all"
                 >
-                  <Shuffle className="w-5 h-5" />
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-secondary text-white">
+                  <Shuffle className="w-4 h-4 md:w-5 md:h-5" />
+                  <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 text-[10px] md:text-xs bg-secondary text-white">
                     {compareCount}
                   </Badge>
                 </Button>
               </Link>
 
-              <Link href="/wishlist">
+              <Link href="/favoritos" className="flex">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="relative h-11 w-11 rounded-xl hover:bg-muted hover:text-primary transition-all hidden sm:flex"
+                  className="relative h-9 w-9 md:h-11 md:w-11 rounded-xl hover:bg-muted hover:text-primary transition-all"
                 >
-                  <Heart className="w-5 h-5" />
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-secondary text-white">
+                  <Heart className="w-4 h-4 md:w-5 md:h-5" />
+                  <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 text-[10px] md:text-xs bg-secondary text-white">
                     {wishlistCount}
                   </Badge>
                 </Button>
               </Link>
 
               <Link href="/carrito">
-                <Button className="relative h-11 px-4 rounded-xl bg-primary hover:bg-primary/90 gap-2 shadow-md hover:shadow-lg transition-all">
-                  <ShoppingCart className="w-5 h-5" />
+                <Button className="relative h-9 md:h-11 px-2 md:px-4 rounded-xl bg-primary hover:bg-primary/90 gap-1 md:gap-2 shadow-md hover:shadow-lg transition-all">
+                  <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" />
                   {itemCount > 0 && (
-                    <Badge className="absolute -top-1 -left-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-secondary">
+                    <Badge className="absolute -top-1 -left-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 text-[10px] md:text-xs bg-secondary">
                       {itemCount}
                     </Badge>
                   )}
-                  <span className="font-bold text-base">${total.toFixed(2)}</span>
+                  <span className="font-bold text-xs md:text-base hidden xs:inline">${total.toFixed(2)}</span>
                 </Button>
               </Link>
             </div>
           </div>
+          {/* Mobile Search Bar - shown only on mobile below lg */}
+          <div className="mt-3 lg:hidden">
+            <HeaderSearch />
+          </div>
         </div>
 
-        {/* Desktop Navigation - Hidden on Mobile */}
-        <div className="hidden md:block bg-muted/50 border-t border-border">
+        <div className="bg-muted/50 border-t border-border hidden lg:block">
           <div className="container mx-auto px-4">
             <nav className="flex items-center gap-2 py-3 overflow-x-auto scrollbar-hide">
               <DropdownMenu open={isCategoriesOpen} onOpenChange={setIsCategoriesOpen}>
@@ -322,7 +320,7 @@ export default function Header() {
                     )}
                   >
                     <Menu className="w-4 h-4" />
-                    <span className="hidden sm:inline">Categorías</span>
+                    <span>Categorías</span>
                     <ChevronDown
                       className={cn("w-4 h-4 transition-transform duration-200", isCategoriesOpen && "rotate-180")}
                     />

@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 
 export default function ContactoPage() {
   const [formData, setFormData] = useState({
@@ -23,6 +25,9 @@ export default function ContactoPage() {
   }
 
   return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold mb-4 text-center">Contáctanos</h1>
@@ -137,6 +142,9 @@ export default function ContactoPage() {
           </div>
         </div>
       </div>
+    </div>
+      </main>
+      <Footer />
     </div>
   )
 }

@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { AdminSidebar } from "@/components/admin-sidebar"
-import { AdminHeader } from "@/components/admin-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -32,7 +30,6 @@ interface Categoria {
 }
 
 export default function AdminCategoriasPage() {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [showModal, setShowModal] = useState(false)
   const [editingCategoria, setEditingCategoria] = useState<Categoria | null>(null)
@@ -185,13 +182,7 @@ export default function AdminCategoriasPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <AdminSidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-      
-      <div className={`transition-all duration-300 ${sidebarOpen ? "lg:ml-64" : "lg:ml-20"}`}>
-        <AdminHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
-        
-        <main className="p-6">
+    <div className="space-y-6">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <div>
@@ -362,9 +353,6 @@ export default function AdminCategoriasPage() {
               </CardContent>
             </Card>
           </div>
-        </main>
-      </div>
-
       {/* Modal Nueva/Editar Categoría */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">

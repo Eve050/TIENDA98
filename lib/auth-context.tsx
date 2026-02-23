@@ -11,6 +11,22 @@ interface User {
     storeName: string
     storeUrl: string
     phone: string
+    banner?: string
+    profilePicture?: string
+    address?: {
+      street: string
+      street2: string
+      city: string
+      postalCode: string
+      country: string
+      region: string
+    }
+    biography?: string
+    settings?: {
+      showEmail: boolean
+      showTerms: boolean
+      showSchedule: boolean
+    }
   }
 }
 
@@ -20,6 +36,7 @@ interface AuthContextType {
   register: (name: string, email: string, password: string, type: "customer" | "seller") => Promise<void>
   upgradeToSeller: (storeData: { storeName: string; storeUrl: string; phone: string }) => Promise<void>
   logout: () => void
+  updateUser: (newData: Partial<User>) => Promise<void>
   isAuthenticated: boolean
 }
 
@@ -83,8 +100,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("tienda98-user")
   }
 
+  const updateUser = async (newData: Partial<User>) => {
+    if (!user) return
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 500))
+
+    const updatedUser = { ...user, ...newData }
+    setUser(updatedUser)
+    localStorage.setItem("tienda98-user", JSON.stringify(updatedUser))
+  }
+
   return (
-    <AuthContext.Provider value={{ user, login, register, upgradeToSeller, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, login, register, upgradeToSeller, logout, updateUser, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   )

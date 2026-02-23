@@ -7,10 +7,10 @@ export default function ArtesaniasSection() {
         <p className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-2">
           Hecho en Ecuador
         </p>
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">Artesanías Ecuatorianas</h2>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">Artesanías Ecuatorianas</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6">
         <Link href="/categorias/hecho-en-ecuador" className="group">
           <div className="relative rounded-2xl overflow-hidden h-64 md:h-80">
             <img

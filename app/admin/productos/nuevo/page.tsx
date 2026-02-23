@@ -36,8 +36,7 @@ import {
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { AdminSidebar } from "@/components/admin-sidebar"
-import { AdminHeader } from "@/components/admin-header"
+
 
 interface ProductVariant {
   id: string
@@ -50,7 +49,6 @@ interface ProductVariant {
 
 export default function NewProductPage() {
   const router = useRouter()
-  const [sidebarOpen, setSidebarOpen] = useState(true)
   const [saving, setSaving] = useState(false)
   const [activeTab, setActiveTab] = useState("general")
   
@@ -157,13 +155,7 @@ export default function NewProductPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <AdminSidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-      
-      <div className={`transition-all duration-300 ${sidebarOpen ? "lg:ml-64" : "lg:ml-20"}`}>
-        <AdminHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
-        
-        <main className="p-6">
+    <div className="space-y-6">
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
             <div className="flex items-center gap-4">
@@ -842,8 +834,6 @@ export default function NewProductPage() {
               </Card>
             </div>
           </div>
-        </main>
-      </div>
     </div>
   )
 }

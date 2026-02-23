@@ -16,8 +16,7 @@ import {
   ChevronRight,
   Check,
   Share2,
-  ThumbsUp,
-  MessageSquare,
+
   MapPin,
   ChevronDown,
   ChevronUp,
@@ -34,11 +33,7 @@ for (const p of productCatalog) {
   allProducts[String(p.id)] = p
 }
 
-const reviewsData = [
-  { user: "Maria G.", rating: 5, date: "Hace 3 dias", comment: "Excelente producto, llego antes de lo esperado. La calidad es increible, totalmente recomendado.", helpful: 24 },
-  { user: "Carlos R.", rating: 4, date: "Hace 1 semana", comment: "Muy buen producto por el precio. El envio fue rapido y llego bien empaquetado.", helpful: 12 },
-  { user: "Ana P.", rating: 5, date: "Hace 2 semanas", comment: "Me encanto! Funciona perfectamente y el diseno es muy bonito. Tienda98 siempre cumple.", helpful: 8 },
-]
+
 
 export default function ProductPage() {
   const routeParams = useParams()
@@ -528,44 +523,7 @@ export default function ProductPage() {
               </div>
             </div>
 
-            {/* Individual Reviews */}
-            <div className="space-y-6">
-              {reviewsData.map((review, idx) => (
-                <div key={`review-${idx}`} className="space-y-2 pb-6 border-b border-gray-100 last:border-b-0">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-                      <span className="text-xs font-bold text-gray-600">
-                        {review.user.charAt(0)}
-                      </span>
-                    </div>
-                    <span className="text-sm font-medium text-foreground">{review.user}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-0.5">
-                      {[1, 2, 3, 4, 5].map((i) => (
-                        <Star
-                          key={`rev-star-${idx}-${i}`}
-                          className={`w-3.5 h-3.5 ${i <= review.rating ? "fill-amber-400 text-amber-400" : "fill-gray-200 text-gray-200"}`}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-sm font-bold text-foreground">Compra verificada</span>
-                  </div>
-                  <p className="text-xs text-gray-500">{review.date}</p>
-                  <p className="text-sm text-gray-700 leading-relaxed">{review.comment}</p>
-                  <div className="flex items-center gap-4 pt-1">
-                    <button className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-orange-500 transition-colors">
-                      <ThumbsUp className="w-3.5 h-3.5" />
-                      {"Util"} ({review.helpful})
-                    </button>
-                    <button className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-orange-500 transition-colors">
-                      <MessageSquare className="w-3.5 h-3.5" />
-                      Responder
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+
           </div>
         </section>
       </main>

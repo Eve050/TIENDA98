@@ -84,8 +84,8 @@ export default function HeaderSearch() {
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => query.length >= 2 && results.length > 0 && setIsOpen(true)}
             onKeyDown={handleKeyDown}
-            placeholder="¿Qué estás buscando?"
-            className="pl-4 pr-12 md:pr-14 h-10 md:h-12 rounded-xl border-2 border-muted focus:border-primary text-sm md:text-base shadow-sm w-full"
+            placeholder="Que estas buscando?"
+            className="pl-4 pr-20 h-12 rounded-xl border-2 border-muted focus:border-primary text-base shadow-sm"
           />
           {query && (
             <button
@@ -126,8 +126,9 @@ export default function HeaderSearch() {
                       setIsOpen(false)
                       setQuery("")
                     }}
-                    className={`flex items-center gap-3 px-4 py-3 transition-colors ${highlightedIndex === i ? "bg-orange-50" : "hover:bg-gray-50"
-                      }`}
+                    className={`flex items-center gap-3 px-4 py-3 transition-colors ${
+                      highlightedIndex === i ? "bg-orange-50" : "hover:bg-gray-50"
+                    }`}
                   >
                     <div className="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0">
                       <img

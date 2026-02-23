@@ -13,6 +13,8 @@ interface Product {
   category?: string
   store?: string
   originalPrice?: number
+  features?: string[]
+  specs?: Record<string, string>
 }
 
 export function ProductActions({ product }: { product: Product }) {
@@ -34,11 +36,10 @@ export function ProductActions({ product }: { product: Product }) {
             store: product.store,
           })
         }}
-        className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors ${
-          isInWishlist(product.id)
+        className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors ${isInWishlist(product.id)
             ? "bg-orange-500 text-white"
             : "bg-white text-gray-500 hover:bg-orange-500 hover:text-white"
-        }`}
+          }`}
       >
         <Heart className={`w-4 h-4 ${isInWishlist(product.id) ? "fill-current" : ""}`} />
       </button>
@@ -53,13 +54,14 @@ export function ProductActions({ product }: { product: Product }) {
             image: product.image,
             category: product.category,
             store: product.store,
+            features: product.features,
+            specs: product.specs,
           })
         }}
-        className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors ${
-          isInCompare(product.id)
+        className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors ${isInCompare(product.id)
             ? "bg-orange-500 text-white"
             : "bg-white text-gray-500 hover:bg-orange-500 hover:text-white"
-        }`}
+          }`}
       >
         <Shuffle className="w-4 h-4" />
       </button>

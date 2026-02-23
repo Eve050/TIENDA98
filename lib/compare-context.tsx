@@ -10,6 +10,8 @@ export interface CompareItem {
   store?: string
   category?: string
   originalPrice?: number
+  features?: string[]
+  specs?: Record<string, string>
 }
 
 interface CompareContextType {
@@ -46,6 +48,13 @@ export function CompareProvider({ children }: { children: ReactNode }) {
     setItems((prev) => {
       if (prev.find((i) => i.id === item.id)) return prev
       if (prev.length >= 4) return prev
+
+      // Model restriction: only allow same product name (model)
+      if (prev.length > 0 && prev[0].name !== item.name) {
+        // Clear list and add new item to switch model comparison
+        return [item]
+      }
+
       return [...prev, item]
     })
   }
@@ -60,6 +69,12 @@ export function CompareProvider({ children }: { children: ReactNode }) {
         return prev.filter((i) => i.id !== item.id)
       }
       if (prev.length >= 4) return prev
+
+      // Model restriction: same name only
+      if (prev.length > 0 && prev[0].name !== item.name) {
+        return [item]
+      }
+
       return [...prev, item]
     })
   }

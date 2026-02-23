@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { AdminSidebar } from "@/components/admin-sidebar"
-import { AdminHeader } from "@/components/admin-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { 
@@ -72,8 +70,7 @@ const weeklyData = [
 ]
 
 export default function AdminReportesPage() {
-  const [dateRange, setDateRange] = useState("mes")
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [dateRange, setDateRange] = useState("mes");
   const [chartView, setChartView] = useState<"diario" | "semanal" | "mensual">("semanal")
 
   const reportes = [
@@ -169,13 +166,7 @@ export default function AdminReportesPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <AdminSidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-      
-      <div className={`transition-all duration-300 ${sidebarOpen ? "lg:ml-64" : "lg:ml-20"}`}>
-        <AdminHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
-        
-        <main className="p-6">
+    <div className="space-y-6">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <div>
@@ -502,8 +493,6 @@ export default function AdminReportesPage() {
               </div>
             </CardContent>
           </Card>
-        </main>
-      </div>
     </div>
   )
 }
